@@ -21,6 +21,16 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+
     - run: CI=true pnpm i
-    - run: pnpm run build
     - run: pnpm test
+    - run: pnpm run build
+
+    - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          artifacts: "app.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
