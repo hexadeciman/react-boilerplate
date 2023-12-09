@@ -1,7 +1,11 @@
 {
   "schemaVersion": 2,
+  "templateId": "nginx",
   "dockerfileLines": [
-    "FROM nginx:stable-alpine",
-    "COPY ./dist /build COPY ./dist /usr/share/nginx/html"
-    ]
+    "FROM arm32v7/nginx:latest",
+    "COPY dist/ /usr/share/nginx/html"
+  ],
+  "envVars": {
+    "PORT": "80"
+  }
 }
