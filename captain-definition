@@ -2,6 +2,6 @@
   "schemaVersion": 2,
   "dockerfileLines": [
     "FROM nginx:stable-alpine",
-    "COPY --from=dist /build /usr/share/nginx/html"
+    "COPY ./dist /build COPY ./dist /usr/share/nginx/html"
     ]
 }
