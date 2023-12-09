@@ -70,6 +70,6 @@ jobs:
       uses: caprover/deploy-from-github@main
       with:
         server: '${{ secrets.DELIVERY_SERVER }}'
-        app: '${{ secrets.DELIVERY_APP }}'
-        token: '${{ secrets.DELIVERY_TOKEN }}'
+        app: '${{ secrets.DELIVERY_APP_PROD }}'
+        token: '${{ secrets.DELIVERY_TOKEN_PROD }}'
 
