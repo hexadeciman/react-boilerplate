@@ -34,7 +34,7 @@ jobs:
     - name: Share artifact inside workflow
       uses: actions/upload-artifact@v1
       with:
-        name: app
+        name: app.zip
         path: dist
 
     - name: Release
