@@ -49,7 +49,7 @@ jobs:
         body: ${{ steps.tag_version.outputs.changelog }}
         allowUpdates: true
         artifactErrorsFailBuild: true
-        artifacts: app-v${{ steps.tag_version.outputs.new_tag }}.zip
+        artifacts: /home/runner/work/react-boilerplate/react-boilerplate/app-v${{ steps.tag_version.outputs.new_tag }}.zip
         token: ${{ secrets.GITHUB_TOKEN }}
         prerelease: true
         removeArtifacts: true
