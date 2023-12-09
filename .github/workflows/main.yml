@@ -36,7 +36,6 @@ jobs:
       with:
         filename: app-${{ steps.tag_version.outputs.new_tag }}.zip
         path: dist
-        custom: -j
 
     - name: Upload build zip artifact
       uses: actions/upload-artifact@v1
@@ -56,3 +55,21 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         prerelease: true
         removeArtifacts: true
+    
+    - name: Prepare Deploy
+      uses: a7ul/tar-action@v1.1.0
+      with:
+        command: c
+        cwd: "./"
+        files: |
+          dist/
+          captain-definition
+        outPath: deploy.tar
+
+    - name: Deploy
+      uses: caprover/deploy-from-github@main
+      with:
+        server: '${{ secrets.DELIVERY_SERVER }}'
+        app: '${{ secrets.DELIVERY_APP }}'
+        token: '${{ secrets.DELIVERY_TOKEN }}'
+
