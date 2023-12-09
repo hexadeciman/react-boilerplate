@@ -34,9 +34,13 @@ jobs:
     - name: Share artifact inside workflow
       uses: actions/upload-artifact@v1
       with:
-        name: app.zip
+        name: app-v${{ steps.tag_version.outputs.new_tag }}.zip
         path: dist
 
+    - uses: actions/download-artifact@v3
+      with:
+        name: app-v${{ steps.tag_version.outputs.new_tag }}.zip
+        
     - name: Release
       uses: ncipollo/release-action@v1
       with:
@@ -45,6 +49,7 @@ jobs:
         body: ${{ steps.tag_version.outputs.changelog }}
         allowUpdates: true
         artifactErrorsFailBuild: true
-        artifacts: app.zip
+        artifacts: app-v${{ steps.tag_version.outputs.new_tag }}.zip
         token: ${{ secrets.GITHUB_TOKEN }}
         prerelease: true
+        removeArtifacts: true
