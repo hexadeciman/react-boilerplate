@@ -2,7 +2,6 @@
   "schemaVersion": 2,
   "dockerfileLines": [
     "FROM galenguyer/nginx:1.23.3-debian11.5", 
-    "COPY ./dist /app",
-    "RUN chmod -R 777 /app"
-  ]
+    "COPY ./dist /web/build /usr/share/nginx/html"
+    ]
 }
