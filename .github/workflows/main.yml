@@ -66,6 +66,12 @@ jobs:
           captain-definition
         outPath: deploy.tar
 
+    - name: Upload build zip artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: deploy.tar
+        path: deploy.tar
+
     - name: Deploy
       uses: caprover/deploy-from-github@main
       with:
