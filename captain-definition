@@ -2,6 +2,6 @@
   "schemaVersion": 2,
   "dockerfileLines": [
     "FROM galenguyer/nginx:1.23.3-debian11.5", 
-    "COPY ./dist /web/build /usr/share/nginx/html"
+    "COPY ./dist /usr/share/nginx/html"
     ]
 }
