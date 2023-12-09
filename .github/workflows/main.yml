@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: app
-        path: build
+        path: dist
 
     - name: Release
       uses: ncipollo/release-action@v1
