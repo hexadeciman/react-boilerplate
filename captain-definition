@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "dockerfileLines": [
-    "FROM socialengine/nginx-spa:latest", 
+    "FROM galenguyer/nginx:1.23.3-debian11.5", 
     "COPY ./dist /app"
   ]
 }
