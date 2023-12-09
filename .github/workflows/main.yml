@@ -31,16 +31,18 @@ jobs:
     - run: pnpm test
     - run: pnpm run build
 
-    - name: Share artifact inside workflow
-      uses: actions/upload-artifact@v1
+    - name: Zip build
+      uses: thedoctor0/zip-release@master
       with:
-        name: app-v${{ steps.tag_version.outputs.new_tag }}.zip
+        filename: app-${{ steps.tag_version.outputs.new_tag }}.zip
         path: dist
 
-    - uses: actions/download-artifact@v3
+    - name: Upload build zip artifact
+      uses: actions/upload-artifact@v1
       with:
-        name: app-v${{ steps.tag_version.outputs.new_tag }}.zip
-        
+        name: app-${{ steps.tag_version.outputs.new_tag }}.zip
+        path: app-${{ steps.tag_version.outputs.new_tag }}.zip
+
     - name: Release
       uses: ncipollo/release-action@v1
       with:
@@ -49,7 +51,7 @@ jobs:
         body: ${{ steps.tag_version.outputs.changelog }}
         allowUpdates: true
         artifactErrorsFailBuild: true
-        artifacts: /home/runner/work/react-boilerplate/react-boilerplate/app-v${{ steps.tag_version.outputs.new_tag }}.zip
+        artifacts: app-${{ steps.tag_version.outputs.new_tag }}.zip
         token: ${{ secrets.GITHUB_TOKEN }}
         prerelease: true
         removeArtifacts: true
